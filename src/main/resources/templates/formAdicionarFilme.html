@@ -10,20 +10,23 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <h1>Filme</h1>
     </div>
     <section class="row mx-lg-3 d-sm-flex justify-content-sm-center justify-content-lg-start">
-        <form class="col-sm-8 col-md-6 col-lg-10">
+        <form action="#" th:action="@{/salvarFilme}" th:object="${filme}" method="post" class="col-sm-8 col-md-6 col-lg-10">
             <div class="d-lg-flex">
+                <input type="hidden" th:field="*{id}">
                 <div class="mb-3 flex-lg-grow-1 me-lg-3">
                     <label for="inputNone" class="form-label">None</label>
                     <input type="text" class="form-control border border-primary-subtle" id="inputNone"
-                           placeholder="Escreva aqui o nome do filme">
+                           placeholder="Escreva aqui o nome do filme" th:field="*{nome}">
                 </div>
                 <div class="mb-3 mx-lg-2">
                     <label for="inputDataDeLancamento" class="form-label">Data de lançamento</label>
-                    <input type="date" class="form-control border border-primary-subtle" id="inputDataDeLancamento">
+                    <input type="date" class="form-control border border-primary-subtle" id="inputDataDeLancamento"
+                           th:field="*{dataDeLancamento}">
                 </div>
                 <div class="mb-3 ms-lg-3">
                     <label for="inputAssistidoNaData" class="form-label">Assistido na data</label>
-                    <input type="date" class="form-control border border-primary-subtle" id="inputAssistidoNaData">
+                    <input type="date" class="form-control border border-primary-subtle" id="inputAssistidoNaData"
+                           th:field="*{assistidoNaData}">
                 </div>
             </div>
             <div class="d-lg-flex justify-content-lg-end">

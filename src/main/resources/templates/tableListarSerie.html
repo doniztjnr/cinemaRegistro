@@ -24,21 +24,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Loki</td>
-                    <td>09/06/2021</td>
-                    <td>10/06/2021</td>
-                    <td>2</td>
-                    <td>12</td>
+                <tr th:each="serie : ${series}">
+                    <td th:text="${serie.nome}"></td>
+                    <td th:text="${serie.dataDeLancamento}"></td>
+                    <td th:text="${serie.assistidoNaData}"></td>
+                    <td th:text="${serie.temporada}"></td>
+                    <td th:text="${serie.totalDeEpisodio}"></td>
                     <td class="d-flex gap-2">
-                        <form action="#" method="post">
-                            <button class="btn btn-outline-secondary" type="submit"><i
-                                    class="bi bi-pen"></i></button>
-                        </form>
-                        <form action="#" method="post">
-                            <button class="btn btn-outline-danger" type="submit"><i
-                                    class="bi bi-trash"></i></button>
-                        </form>
+                        <a href="@{/atualizarSerie/${serie.id}" 
+                           class="btn btn-outline-secondary">
+                            <i class="bi bi-pen"></i>
+                        </a>
+                        <a href="@{/deletarSerie/${serie.id}" 
+                           class="btn btn-outline-danger">
+                            <i class="bi bi-trash"></i>
+                        </a>
                     </td>
                 </tr>
             </tbody>

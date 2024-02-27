@@ -22,19 +22,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Guardiões Da Galáxia Vol 1</td>
-                    <td>31/07/2014</td>
-                    <td>02/08/2014</td>
+                <tr th:each="filme : ${filmes}">
+                    <td th:text="${filme.nome}"></td>
+                    <td th:text="${filme.dataDeLancamento}"></td>
+                    <td th:text="${filme.assistidoNaData}"></td>
                     <td class="d-flex gap-2">
-                        <form action="#" method="post">
-                            <button class="btn btn-outline-secondary" type="submit"><i
-                                    class="bi bi-pen"></i></button>
-                        </form>
-                        <form action="#" method="post">
-                            <button class="btn btn-outline-danger" type="submit"><i
-                                    class="bi bi-trash"></i></button>
-                        </form>
+                        <a href="@{/atualizarFilme/${filme.id}" 
+                           class="btn btn-outline-secondary">
+                            <i class="bi bi-pen"></i>
+                        </a>
+                        <a href="@{/deletarFilme/${filme.id}" 
+                           class="btn btn-outline-danger">
+                            <i class="bi bi-trash"></i>
+                        </a>
                     </td>
                 </tr>
             </tbody>

@@ -10,31 +10,34 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <h1>Série</h1>
     </div>
     <section class="row mx-lg-3 d-sm-flex justify-content-sm-center justify-content-lg-start">
-        <form class="col-sm-8 col-md-6 col-lg-12">
+        <form action="#" th:action="@{/salvarSerie}" th:object="${serie}" method="post" class="col-sm-8 col-md-6 col-lg-12">
             <div class="d-lg-flex">
+                <input type="hidden" th:field="*{id}">
                 <div class="mb-3 flex-lg-grow-1 me-lg-3">
                     <label for="inputNone" class="form-label">None</label>
                     <input type="text" class="form-control border border-primary-subtle" id="inputNone"
-                           placeholder="Escreva aqui o nome da série">
+                           placeholder="Escreva aqui o nome da série" th:field="*{nome}">
                 </div>
                 <div class="mb-3 mx-lg-2">
                     <label for="inputDataDeLancamento" class="form-label">Data de lançamento</label>
-                    <input type="date" class="form-control border border-primary-subtle" id="inputDataDeLancamento">
+                    <input type="date" class="form-control border border-primary-subtle" id="inputDataDeLancamento"
+                           th:field="*{dataDeLancamento}">
                 </div>
                 <div class="mb-3 ms-lg-3">
                     <label for="inputAssistidoNaData" class="form-label">Assistido na data</label>
-                    <input type="date" class="form-control border border-primary-subtle" id="inputAssistidoNaData">
+                    <input type="date" class="form-control border border-primary-subtle" id="inputAssistidoNaData" 
+                           th:field="*{assistidoNaData}">
                 </div>
                 <div class="d-flex">
                     <div class="mb-3 ms-lg-3">
                         <label for="inputTemporada" class="form-label">Temporada(s)</label>
                         <input type="number" class="form-control border border-primary-subtle" id="inputTemporada"
-                               style="width: 77px;">
+                               style="width: 77px;" th:field="*{temporada}">
                     </div>
                     <div class="mb-3 ms-4 ms-lg-3">
                         <label for="inputTotalDeEpisodios" class="form-label">Total de episódios</label>
                         <input type="number" class="form-control border border-primary-subtle"
-                               id="inputTotalDeEpisodios" style="width: 77px;">
+                               id="inputTotalDeEpisodios" style="width: 77px;" th:field="*{totalDeEpisodio}">
                     </div>
 
                 </div>

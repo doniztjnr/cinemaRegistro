@@ -23,7 +23,7 @@ public class CartoonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    String none;
+    String nome;
     String dataDeLancamento;
     String assistidoNaData;
     String temporada;

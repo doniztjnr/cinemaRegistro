@@ -36,7 +36,7 @@ public class FilmeService {
 
     public FilmeEntity atualizarFilme(Integer filmeId, FilmeEntity filmeRequest) {
         FilmeEntity filme = getFilmeById(filmeId);
-        filme.setNone(filmeRequest.getNone());
+        filme.setNome(filmeRequest.getNome());
         filme.setDataDeLancamento(filmeRequest.getDataDeLancamento());
         filme.setAssistidoNaData(filmeRequest.getAssistidoNaData());
         filmeRepository.save(filme);

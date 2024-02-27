@@ -36,7 +36,7 @@ public class CartoonService {
 
     public CartoonEntity atualizarCartoon(Integer cartoonId, CartoonEntity cartoonRequest) {
         CartoonEntity cartoon = getCartoonById(cartoonId);
-        cartoon.setNone(cartoonRequest.getNone());
+        cartoon.setNome(cartoonRequest.getNome());
         cartoon.setDataDeLancamento(cartoonRequest.getDataDeLancamento());
         cartoon.setAssistidoNaData(cartoonRequest.getAssistidoNaData());
         cartoon.setTemporada(cartoonRequest.getTemporada());

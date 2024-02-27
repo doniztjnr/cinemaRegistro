@@ -24,21 +24,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Gravity Falls</td>
-                    <td>15/02/2016</td>
-                    <td>07/05/2019</td>
-                    <td>2</td>
-                    <td>41</td>
+                <tr th:each="cartoon : ${cartoons}">
+                    <td th:text="${cartoon.nome}"></td>
+                    <td th:text="${cartoon.dataDeLancamento}"></td>
+                    <td th:text="${cartoon.assistidoNaData}"></td>
+                    <td th:text="${cartoon.temporada}"></td>
+                    <td th:text="${cartoon.totalDeEpisodio}"></td>
                     <td class="d-flex gap-2">
-                        <form action="#" method="post">
-                            <button class="btn btn-outline-secondary" type="submit"><i
-                                    class="bi bi-pen"></i></button>
-                        </form>
-                        <form action="#" method="post">
-                            <button class="btn btn-outline-danger" type="submit"><i
-                                    class="bi bi-trash"></i></button>
-                        </form>
+                        <a href="@{/atualizarCartoon/${cartoon.id}" 
+                           class="btn btn-outline-secondary">
+                            <i class="bi bi-pen"></i>
+                        </a>
+                        <a href="@{/deletarCartoon/${cartoon.id}" 
+                           class="btn btn-outline-danger">
+                            <i class="bi bi-trash"></i>
+                        </a>
                     </td>
                 </tr>
             </tbody>

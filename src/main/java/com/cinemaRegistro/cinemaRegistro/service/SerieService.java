@@ -36,7 +36,7 @@ public class SerieService {
 
     public SerieEntity atualizarSerie(Integer serieId, SerieEntity serieRequest) {
         SerieEntity serie = getSerieById(serieId);
-        serie.setNone(serieRequest.getNone());
+        serie.setNome(serieRequest.getNome());
         serie.setDataDeLancamento(serieRequest.getDataDeLancamento());
         serie.setAssistidoNaData(serieRequest.getAssistidoNaData());
         serie.setTemporada(serieRequest.getTemporada());
