@@ -31,11 +31,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <td th:text="${serie.temporada}"></td>
                     <td th:text="${serie.totalDeEpisodio}"></td>
                     <td class="d-flex gap-2">
-                        <a href="@{/atualizarSerie/${serie.id}" 
+                        <a th:href="@{/atualizarSerie/{id}(id=${serie.id})}" 
                            class="btn btn-outline-secondary">
                             <i class="bi bi-pen"></i>
                         </a>
-                        <a href="@{/deletarSerie/${serie.id}" 
+                        <a th:href="@{/deletarSerie/{id}(id=${serie.id})}" 
                            class="btn btn-outline-danger">
                             <i class="bi bi-trash"></i>
                         </a>

@@ -27,11 +27,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <td th:text="${filme.dataDeLancamento}"></td>
                     <td th:text="${filme.assistidoNaData}"></td>
                     <td class="d-flex gap-2">
-                        <a href="@{/atualizarFilme/${filme.id}" 
+                        <a th:href="@{/atualizarFilme/{id}(id = ${filme.id})}" 
                            class="btn btn-outline-secondary">
                             <i class="bi bi-pen"></i>
                         </a>
-                        <a href="@{/deletarFilme/${filme.id}" 
+                        <a th:href="@{/deletarFilme/{id}(id = ${filme.id})}" 
                            class="btn btn-outline-danger">
                             <i class="bi bi-trash"></i>
                         </a>

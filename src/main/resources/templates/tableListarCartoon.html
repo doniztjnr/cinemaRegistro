@@ -31,11 +31,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <td th:text="${cartoon.temporada}"></td>
                     <td th:text="${cartoon.totalDeEpisodio}"></td>
                     <td class="d-flex gap-2">
-                        <a href="@{/atualizarCartoon/${cartoon.id}" 
+                        <a th:href="@{/atualizarCartoon/{id}(id=${cartoon.id})}" 
                            class="btn btn-outline-secondary">
                             <i class="bi bi-pen"></i>
                         </a>
-                        <a href="@{/deletarCartoon/${cartoon.id}" 
+                        <a th:href="@{/deletarCartoon/{id}(id=${cartoon.id})}" 
                            class="btn btn-outline-danger">
                             <i class="bi bi-trash"></i>
                         </a>
