@@ -6,6 +6,8 @@ package com.cinemaRegistro.cinemaRegistro.controller;
 
 import com.cinemaRegistro.cinemaRegistro.data.CartoonEntity;
 import com.cinemaRegistro.cinemaRegistro.service.CartoonService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,50 +30,85 @@ public class CartoonController {
     CartoonService cartoonService;
 
     @GetMapping("/listarCartoons")
-    public String tableListarCartoon(Model model) {
-        List<CartoonEntity> cartoons = cartoonService.getTodosOsCartoons();
-        model.addAttribute("cartoons", cartoons);
-        model.addAttribute("title", "Cartoons");
-        model.addAttribute("navbar", "headerNavBar.html");
-        model.addAttribute("content", "tableListarCartoon.html");
-        return "index";
+    public String tableListarCartoon(HttpServletRequest request, Model model) {
+        HttpSession sessao = request.getSession();
+        if (sessao != null && sessao.getAttribute("logado") == null) {
+            return "redirect:/";
+        }
+        if (sessao != null && sessao.getAttribute("logado").equals("true")) {
+            List<CartoonEntity> cartoons = cartoonService.getTodosOsCartoons();
+            model.addAttribute("cartoons", cartoons);
+            model.addAttribute("title", "Cartoons");
+            model.addAttribute("navbar", "headerNavBar.html");
+            model.addAttribute("content", "tableListarCartoon.html");
+            return "index";
+        }
+        return "redirect:/";
     }
 
     @GetMapping("/adicionarCartoon")
-    public String formAdicionarCartoon(Model model) {
-        model.addAttribute("cartoon", new CartoonEntity());
-        model.addAttribute("title", "Adicionar cartoon");
-        model.addAttribute("navbar", "headerNavBar.html");
-        model.addAttribute("content", "formAdicionarCartoon.html");
-        return "index";
+    public String formAdicionarCartoon(HttpServletRequest request, Model model) {
+        HttpSession sessao = request.getSession();
+        if (sessao != null && sessao.getAttribute("logado") == null) {
+            return "redirect:/";
+        }
+        if (sessao != null && sessao.getAttribute("logado").equals("true")) {
+            model.addAttribute("cartoon", new CartoonEntity());
+            model.addAttribute("title", "Adicionar cartoon");
+            model.addAttribute("navbar", "headerNavBar.html");
+            model.addAttribute("content", "formAdicionarCartoon.html");
+            return "index";
+        }
+        return "redirect:/";
     }
 
     @PostMapping("/salvarCartoon")
-    public String adicionarCartoon(@Valid @ModelAttribute("cartoon") CartoonEntity cartoonEntity, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return tableListarCartoon(model);
+    public String adicionarCartoon(HttpServletRequest request, @Valid @ModelAttribute("cartoon") CartoonEntity cartoonEntity, BindingResult result) {
+        HttpSession sessao = request.getSession();
+        if (sessao != null && sessao.getAttribute("logado") == null) {
+            return "redirect:/";
         }
-        if (cartoonEntity.getId() == null) {
-            cartoonService.criarCartoon(cartoonEntity);
-        } else {
-            cartoonService.atualizarCartoon(cartoonEntity.getId(), cartoonEntity);
+        if (sessao != null && sessao.getAttribute("logado").equals("true")) {
+            if (result.hasErrors()) {
+                return "redirect:/listarCartoons";
+            }
+            if (cartoonEntity.getId() == null) {
+                cartoonService.criarCartoon(cartoonEntity);
+            } else {
+                cartoonService.atualizarCartoon(cartoonEntity.getId(), cartoonEntity);
+            }
+            return "redirect:/listarCartoons";
         }
-        return tableListarCartoon(model);
+        return "redirect:/";
     }
 
     @GetMapping("/atualizarCartoon/{id}")
-    public String atualizarCartoon(@PathVariable(value = "id") Integer id, Model model) {
-        CartoonEntity cartoon = cartoonService.getCartoonById(id);
-        model.addAttribute("cartoon", cartoon);
-        model.addAttribute("title", "Atualizar cartoon");
-        model.addAttribute("navbar", "headerNavBar.html");
-        model.addAttribute("content", "formAdicionarCartoon.html");
-        return "index";
+    public String atualizarCartoon(HttpServletRequest request, @PathVariable(value = "id") Integer id, Model model) {
+        HttpSession sessao = request.getSession();
+        if (sessao != null && sessao.getAttribute("logado") == null) {
+            return "redirect:/";
+        }
+        if (sessao != null && sessao.getAttribute("logado").equals("true")) {
+            CartoonEntity cartoon = cartoonService.getCartoonById(id);
+            model.addAttribute("cartoon", cartoon);
+            model.addAttribute("title", "Atualizar cartoon");
+            model.addAttribute("navbar", "headerNavBar.html");
+            model.addAttribute("content", "formAdicionarCartoon.html");
+            return "index";
+        }
+        return "redirect:/";
     }
 
     @GetMapping("/deletarCartoon/{id}")
-    public String deletarCartoon(@PathVariable(value = "id") Integer id, Model model) {
-        cartoonService.deletarCartoon(id);
-        return tableListarCartoon(model);
+    public String deletarCartoon(HttpServletRequest request, @PathVariable(value = "id") Integer id) {
+        HttpSession sessao = request.getSession();
+        if (sessao != null && sessao.getAttribute("logado") == null) {
+            return "redirect:/";
+        }
+        if (sessao != null && sessao.getAttribute("logado").equals("true")) {
+            cartoonService.deletarCartoon(id);
+            return "redirect:/listarCartoons";
+        }
+        return "redirect:/";
     }
 }
